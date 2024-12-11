@@ -10,21 +10,20 @@ public class Algorithms{
         f = new File("words.txt");
         s = new Scanner(f);
         m = new HashMap<String, Integer>();
-        String x;
         while (s.hasNextLine()){
-            x = s.nextLine();
-            if (m.isEmpty()){
-                m.put(x, 1);
-            } else if (m.containsKey(x)){
-                m.replace(x, m.get(x) + 1);
-            } else m.put(x, 1);
+            m.put(s.nextLine(), 1);
         }
         int lengthTwo = length(2);
         int maxLength = numOfStrsWithLongestLength();
         int palindromes = numOfPalindromes();
-        System.out.println(lengthTwo);
-        System.out.println(maxLength);
-        System.out.println(palindromes);
+        System.out.println("Strings with length of two: " + lengthTwo);
+        System.out.println("Amount of strings tied for greatest length: " + maxLength + " or " + length(greatestLength()));
+        System.out.println("Palindromes: " + palindromes);
+        int y = 0;
+        for (String i : m.keySet()){
+            if (y < 5) System.out.println(i);
+            y++;
+        }
         s.close();
     }
 
@@ -56,4 +55,11 @@ public class Algorithms{
         return count;
     }
     
+    public static int greatestLength(){
+        int length = 0;
+        for (String i : m.keySet()){
+            if (i.length() > length) length = i.length();
+        }
+        return length;
+    }
 }
