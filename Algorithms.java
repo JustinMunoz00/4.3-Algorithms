@@ -20,7 +20,11 @@ public class Algorithms{
             } else m.put(x, 1);
         }
         int lengthTwo = length(2);
+        int maxLength = numOfStrsWithLongestLength();
+        int palindromes = numOfPalindromes();
         System.out.println(lengthTwo);
+        System.out.println(maxLength);
+        System.out.println(palindromes);
         s.close();
     }
 
@@ -32,7 +36,23 @@ public class Algorithms{
         return count;
     }
 
-    public static int stringsWithLength(){
-        
+    public static int numOfStrsWithLongestLength(){
+        int count = 0;
+        int greatestLength = 0;
+        for (String i : m.keySet()){
+            if (i.length() == greatestLength) count++;
+            else if (i.length() > greatestLength) count = 1;
+        }
+        return count;
+    }
+
+    public static int numOfPalindromes(){
+        int count = 0;
+        for (String i : m.keySet()){
+            StringBuilder reverse = new StringBuilder(i);
+            reverse = reverse.reverse();
+            if (reverse.toString().equals(i)) count++;
+        }
+        return count;
     }
 }
